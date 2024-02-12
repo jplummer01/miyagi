@@ -19,7 +19,7 @@ import {
     assetsDataAtom,
     investmentsDataAtom,
     loadingPersonalizeAtom,
-    selectedAdvisorAtom,
+    selectedAdvisorAtom, selectedRiskLevelAtom,
     userInfoAtom
 } from "@/data/personalize/store";
 import {formatRequestData} from "@/data/utils/format-request-data";
@@ -53,34 +53,56 @@ export default function PersonalizeDrawer() {
     const [loadingPersonalize, setLoadingPersonalizeAtom] = useAtom(loadingPersonalizeAtom);
 
     const [userInfo] = useAtom(userInfoAtom);
+    const [currentRiskLevel] = useAtom(selectedRiskLevelAtom);
+    const [currentFavoriteAdvisor] = useAtom(selectedAdvisorAtom);
     const [investmentsInfo, setInvestmentsDataAtom] = useAtom(investmentsDataAtom);
     const [assetsInfo, setAssetsDataAtom] = useAtom(assetsDataAtom);
 
     const handlePersonalize = async () => {
         setLoadingPersonalizeAtom(true);
         try {
-            // Format data from assetsInfo and investmentsInfo
             const { portfolio, stocks } = formatRequestData(assetsInfo, investmentsInfo);
 
-            // Fetch data from atoms
+            const updatedUserInfo = {
+                ...userInfo,
+                riskLevel: currentRiskLevel.name,
+                favoriteAdvisor: currentFavoriteAdvisor.name,
+            };
+
+            // Create the requestData object
             const requestData = {
-                userInfo,
+                userInfo: updatedUserInfo,
                 portfolio,
                 stocks,
             };
 
-            const response = await personalizeMutation.mutateAsync(requestData);
-            console.log('Successfully got personalization');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_RECCOMMENDATION_SERVICE_URL?.replace(/\/+$/, '')}/personalize`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            });
+
             console.dir(response);
+
+            if (!response.ok) {
+                console.error('HTTP error: ', response);
+                toast.error('Failed to fetch personalization. Try again later.');
+            }
+
+            const responseData = await response.json();
+            console.log('Successfully got personalization');
+            console.dir(responseData);
             toast.success('Personalization successful');
 
             // Extract the relevant data from the response
-            const updatedAssetData = response.assets.portfolio.map((item, index) => ({
+            const updatedAssetData = responseData.assets.portfolio.map((item, index) => ({
                 ...assetsInfo[index],
                 gptRecommendation: item.gptRecommendation,
             }));
 
-            const updatedInvestmentData = response.investments.portfolio.map((item, index) => ({
+            const updatedInvestmentData = responseData.investments.portfolio.map((item, index) => ({
                 ...investmentsInfo[index],
                 gptRecommendation: item.gptRecommendation,
             }));
@@ -99,6 +121,7 @@ export default function PersonalizeDrawer() {
             setLoadingPersonalizeAtom(false);
         }
     };
+
 
     return (
         <Transition appear show={isPersonalizeOpen} as={Fragment}>

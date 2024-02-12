@@ -6,17 +6,17 @@
 
 <p align="center"><img src="assets/images/1.png" width=20% height=20% /></p>
 
-Project Miyagi showcases Microsoft's Copilot Stack in an [envisioning workshop](https://github.com/Azure-Samples/intelligent-app-workshop) aimed at designing, developing, and deploying enterprise-grade intelligent apps. By exploring both generative and traditional ML [use cases](https://iappwksp.com/wksp/05-use-cases/), Miyagi offers an experiential approach to developing AI-infused product experiences that enhance productivity and enable hyper-personalization. Additionally, the workshop introduces traditional software engineers to emerging design patterns in prompt engineering, such as chain-of-thought and retrieval-augmentation, as well as to techniques like vectorization for long-term memory, fine-tuning of OSS models, and plugins or tools for augmenting and grounding LLMs.
+Project Miyagi showcases Microsoft's Copilot Stack in an [envisioning workshop](https://github.com/Azure-Samples/intelligent-app-workshop) aimed at designing, developing, and deploying enterprise-grade intelligent apps. By exploring both generative and traditional ML [use cases](https://iappwksp.com/wksp/05-use-cases/), Miyagi offers an experiential approach to developing AI-infused product experiences that enhance productivity and enable hyper-personalization. Additionally, the workshop introduces traditional software engineers to emerging design patterns in prompt engineering, such as chain-of-thought and retrieval-augmentation, as well as to techniques like vectorization for long-term memory, fine-tuning of OSS models, agent-like orchestration, and plugins or tools for augmenting and grounding LLMs.
 
 
 > **Note**  
 > *Work in Progress*. Meanwhile, signup at [intelligentapp.dev](https://intelligentapp.dev) for updates and checkout our related repo that showcases Generative AI capabilities for cloud-native, event-driven microservices: [Azure/reddog-solutions](https://github.com/Azure/reddog-solutions#readme). 
 >
-> For a preview, catch the [recording on Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s)
+> :tv: For a preview, catch the [recording on Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s)
 >
 
 
-The project includes examples of usage for [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack), [Promptflow](https://promptflow.azurewebsites.net/overview-what-is-prompt-flow.html), [LlamaIndex](https://github.com/jerryjliu/llama_index), [LangChain](https://github.com/hwchase17/langchain#readme), vector stores ([Azure Cognitive Search](https://github.com/Azure/cognitive-search-vector-pr), [CosmosDB Postgres pgvector](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/howto-use-pgvector), and generative image utilities such as [DreamFusion](https://huggingface.co/thegovind/reddogpillmodel512) and [ControlNet](https://github.com/lllyasviel/ControlNet). Additionally, it features fine-tuned foundation Models from AzureML such as Llama2. Utilize this project to gain insights as you modernize and transform your applications with AI and fine-tune your private data to build your own Copilots.
+The project includes examples of usage for [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack), [Promptflow](https://promptflow.azurewebsites.net/overview-what-is-prompt-flow.html), [LlamaIndex](https://github.com/jerryjliu/llama_index), [LangChain](https://github.com/hwchase17/langchain#readme), vector stores ([Azure AI Search](https://github.com/Azure/cognitive-search-vector-pr), [CosmosDB Postgres pgvector](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/howto-use-pgvector), and generative image utilities such as [DreamFusion](https://huggingface.co/thegovind/reddogpillmodel512) and [ControlNet](https://github.com/lllyasviel/ControlNet). Additionally, it features fine-tuned foundation Models from AzureML such as Llama2 and Phi-2. Utilize this project to gain insights as you modernize and transform your applications with AI and fine-tune your private data to build your own Copilots.
 
 This polyglot codebase relies on a multitude of microservices, implementing several [use cases](https://iappwksp.com/wksp/05-use-cases/) using our Copilot stack. It includes generative text and images for personalized financial coaching, summarization, and agent-like orchestration. Built on a cloud-native event-diven architecture (EDA) backbone, the design and codebase ensures enterprise-grade quality attributes such as availability, scalability, and maintainability.
 
@@ -29,6 +29,7 @@ Due to the rapid pace of advancements in foundation models, we are incrementally
 1. [MVP with Personalize (Synthesis via Semantic Kernel) and Chat on Azure Container Apps](https://agentmiyagi.com).
     1. [Detailed breakdown and implementations](./services/README.md)
     1. [Quickstart with RaG](./sandbox/usecases/rag/dotnet/Getting-started.ipynb)
+1. [VSCode extension for GitHub Copilot Agent](./sandbox/usecases/code-modernization/vscode-gh-copilot-extension/README.md)
 1. [Miyagi ChatGPT Plugin](./services/chatgpt-plugin/python)
 1. [Knowledge Graph memory using Langchain's entity cache](./sandbox/experiments/langchain/Memory_Usecases.ipynb)
 1. [Qdrant vector store for embeddings via Langchain](./sandbox/experiments/langchain/qdrant_miyagi_example)
@@ -42,7 +43,8 @@ Due to the rapid pace of advancements in foundation models, we are incrementally
 Interaction with foundation models is more than chat. This sample shows a few use cases 
 ![frontend](./assets/images/wip-ui.png)
 
-<p align="left"><img src="assets/images/plugin.png" width=50% height=50% /></p>
+#### VSCode extension for GitHub Copilot Agent
+<p align="left"><img src="sandbox/usecases/code-modernization/vscode-gh-copilot-extension/demo.png" width=50% height=50% /></p>
 
 ### Architecture
 
@@ -93,13 +95,18 @@ This will be similar to [reddog](https://reddog-solutions.com) product [image ge
 ### Services and capabilities
 
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
-  - gpt-4
-  - gpt-35-turbo
-  - text-embedding-ada-002
 - [Semantic Kernel](https://github.com/microsoft/semantic-kernel)
-- [Use your own data with Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/use-your-data-quickstart?tabs=command-line&pivots=rest-api#example-curl-commands)
+- [LangChain](https://python.langchain.com/docs/get_started/introduction)
+- [LlamaIndex](https://docs.llamaindex.ai/en/stable/)
+- [GitHub Copilot Agent](https://gh.io/copilot-partner-program)
+- [AI Studio](https://azure.microsoft.com/en-us/products/ai-studio)
+- [AI Search](https://azure.microsoft.com/en-us/products/ai-services/ai-search)
+- [AI Speech](https://azure.microsoft.com/en-us/products/ai-services/ai-speech)
 - [AzureML PromptFlow](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow?view=azureml-api-2)
 - [TypeChat](https://microsoft.github.io/TypeChat)
+- [Kernel-memory](https://github.com/microsoft/kernel-memory)
+- [AutoGen](https://github.com/microsoft/autogen)
+- [TaskWeaver](https://github.com/microsoft/TaskWeaver)
 - [Azure Functions](https://azure.microsoft.com/en-ca/products/functions/)
 - [APIM](https://learn.microsoft.com/en-us/azure/api-management/)
 - [Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
@@ -112,14 +119,8 @@ This will be similar to [reddog](https://reddog-solutions.com) product [image ge
 - [Azure DB for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql)
 - [Azure Redis Cache](https://azure.microsoft.com/en-us/products/cache)
 - [Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
-- [Apache Kafka on Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-kafka-overview)
-- [Azure HuggingFace Inference Endpoints](https://azure.microsoft.com/en-us/solutions/hugging-face-on-azure)
-- [LangChain](https://github.com/hwchase17/langchain#readme)
-- [Foundation Models from CogServices](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/)
-- [Qdrant](https://qdrant.tech/solutions/)
-- [Microsoft DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat)
-- [Azure Web PubSub](https://azure.microsoft.com/en-us/products/web-pubsub)
-- [Azure Communication Services (ACS)](https://learn.microsoft.com/en-us/azure/communication-services/overview#common-scenarios)
+
+
 
 ### Contributing
 

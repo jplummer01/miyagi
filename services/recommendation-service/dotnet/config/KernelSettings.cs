@@ -6,34 +6,52 @@ internal class KernelSettings
 {
     public const string DefaultConfigFile = "appsettings.json";
 
-    [JsonPropertyName("endpointType")] public string EndpointType { get; set; } = EndpointTypes.TextCompletion;
-
-    [JsonPropertyName("serviceType")] public string ServiceType { get; set; } = string.Empty;
-
-    [JsonPropertyName("serviceId")] public string ServiceId { get; set; } = string.Empty;
-
     [JsonPropertyName("deploymentOrModelId")]
     public string DeploymentOrModelId { get; set; } = string.Empty;
 
-    [JsonPropertyName("embeddingServiceId")]
-    public string EmbeddingServiceId { get; set; } = string.Empty;
+    [JsonPropertyName("blobServiceUri")] public string BlobServiceUri { get; set; } = string.Empty;
 
     [JsonPropertyName("embeddingDeploymentOrModelId")]
     public string EmbeddingDeploymentOrModelId { get; set; } = string.Empty;
 
-    [JsonPropertyName("endpoint")] public string Endpoint { get; set; } = string.Empty;
+    [JsonPropertyName("endpoint")] 
+    public string Endpoint { get; set; } = string.Empty;
 
-    [JsonPropertyName("apiKey")] public string ApiKey { get; set; } = string.Empty;
+    [JsonPropertyName("apiKey")] 
+    public string ApiKey { get; set; } = string.Empty;
 
-    [JsonPropertyName("orgId")] public string OrgId { get; set; } = string.Empty;
+    [JsonPropertyName("orgId")] 
+    public string OrgId { get; set; } = string.Empty;
 
-    [JsonPropertyName("logLevel")] public LogLevel? LogLevel { get; set; }
+    [JsonPropertyName("logLevel")] 
+    public LogLevel? LogLevel { get; set; }
+
+    [JsonPropertyName("azureCognitiveSearchEndpoint")]
+    public string AzureCognitiveSearchEndpoint { get; set; } = string.Empty;
+
+    [JsonPropertyName("azureCognitiveSearchApiKey")]
+    public string AzureCognitiveSearchApiKey { get; set; } = string.Empty;
+
+    [JsonPropertyName("collectionName")] 
+    public string CollectionName { get; set; } = string.Empty;
     
-    [JsonPropertyName("cosmosDbDatabaseName")]
-    public string CosmosDbDatabaseName { get; set; } = string.Empty;
+    [JsonPropertyName("bingApiKey")] 
+    public string BingApiKey { get; set; } = string.Empty;
+    
+    [JsonPropertyName("cosmosDbName")] 
+    public string CosmosDbName { get; set; } = string.Empty;
+    
+    [JsonPropertyName("cosmosDbUri")] 
+    public string CosmosDbUri { get; set; } = string.Empty;
 
     [JsonPropertyName("cosmosDbContainerName")]
     public string CosmosDbContainerName { get; set; } = string.Empty;
+    
+    [JsonPropertyName("cosmosDbConnectionString")] 
+    public string CosmosDbConnectionString { get; set; } = string.Empty;
+
+    [JsonPropertyName("corsAllowedOrigins")]
+    public string[] CorsAllowedOrigins { get; set; } = Array.Empty<string>();
 
 
     /// <summary>
